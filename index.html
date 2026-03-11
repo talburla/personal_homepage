@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tal Burla | Academic Homepage</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --faint: #6b7280;
+      --border: #e5e7eb;
+      --link: #1f4bd8;
+      --maxw: 920px;
+
+      --sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --serif: "Source Serif 4", ui-serif, Georgia, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body{
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+
+    a{
+      color: var(--link);
+      text-decoration: none;
+      text-underline-offset: 3px;
+    }
+
+    a:hover{ text-decoration: underline; }
+
+    .container{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .nav{
+      display: flex;
+      gap: 16px;
+      justify-content: flex-end;
+      font-size: 14px;
+      color: var(--faint);
+      margin-bottom: 20px;
+    }
+
+    .nav a{ color: var(--faint); }
+    .nav a:hover{ color: var(--text); text-decoration: none; }
+
+    .hero{
+      display: grid;
+      grid-template-columns: 1.6fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+      padding: 32px 0 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero h1{
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(34px, 4.5vw, 48px);
+      margin: 0 0 12px;
+      line-height: 1.1;
+    }
+
+    .subtitle{
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .focus{
+      font-size: 16px;
+      max-width: 60ch;
+    }
+
+    .photo{
+      justify-self: end;
+      width: 240px;
+      aspect-ratio: 1 / 1;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .photo img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    section{
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type{ border-bottom: none; }
+
+    h2{
+      font-family: var(--serif);
+      font-weight: 600;
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+
+    .papers{
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .paper{
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .paper-title{
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .paper-meta{
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .paper-links{
+      font-size: 14px;
+    }
+
+    .tag{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #fafafa;
+      margin-left: 8px;
+    }
+
+    .me{
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .contact-item{
+      padding: 12px 0;
+    }
+
+    footer{
+      margin-top: 32px;
+      font-size: 13px;
+      color: var(--faint);
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 780px){
+      .hero{
+        grid-template-columns: 1fr;
+      }
+      .photo{
+        justify-self: start;
+        width: 200px;
+      }
+      .nav{
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#preprints">Preprints</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <h1>Tal Burla</h1>
+        <div class="subtitle">PhD Student in Electrical & Computer Engineering</div>
+        <div class="focus">
+          Research focus: optimization learning theory.
+        </div>
+      </div>
+
+      <div class="photo">
+        <!-- Place this image file in the same folder as index.html -->
+        <img src="TalPhoto.JPG" alt="Tal Burla">
+      </div>
+    </header>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a PhD student in Electrical & Computer Engineering at Tel Aviv University.
+        My research interests include machine learning, optimization, and learning theory.
+      </p>
+
+      <p>
+        I obtained my B.Sc. in Mathematics and Computer Science from The Open University,
+        and an M.Sc. in Computer Science from the Tel Aviv University,
+        where I worked under the supervision of Prof. Roi Livni.
+      </p>
+    </section>
+
+    <section id="preprints">
+      <h2>Preprints</h2>
+
+      <div class="papers">
+        <div class="paper">
+          <div class="paper-title">
+            All ERMs Can Fail in Stochastic Convex Optimization: Lower Bounds in Linear Dimension
+            <span class="tag">arXiv 2026</span>
+          </div>
+          <div class="paper-meta">
+            Authors: <span class="me">Tal Burla</span>, Roi Livni
+          </div>
+          <div class="paper-links">
+            <a href="https://arxiv.org/abs/2602.08350" target="_blank">arXiv</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <div class="paper-meta">No publications yet.</div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+
+      <div class="contact-item">
+        Email: <a href="mailto:talburla0810@gmail.com">talburla0810@gmail.com</a>
+      </div>
+
+      <div class="contact-item">
+        <a href="https://scholar.google.com/citations?user=0TXvDfIAAAAJ&hl=en&oi=ao" target="_blank">
+          Google Scholar
+        </a>
+      </div>
+
+      <div class="contact-item">
+        <a href="https://www.linkedin.com/in/tal-burla-030105241" target="_blank">
+          LinkedIn
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Tal Burla
+    </footer>
+
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
