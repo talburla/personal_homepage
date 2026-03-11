@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root{
@@ -146,6 +147,29 @@
       font-size: 14px;
     }
 
+    /* styled button-like links for arXiv and similar */
+    .link-btn,
+    .cite-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--link);
+      padding: 2px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: var(--sans);
+      transition: all 0.2s;
+      margin-left: 8px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .link-btn:hover,
+    .cite-btn:hover{
+      background: var(--border);
+      text-decoration: none;
+    }
+
     .tag{
       font-size: 12px;
       color: var(--muted);
@@ -164,6 +188,146 @@
 
     .contact-item{
       padding: 12px 0;
+    }
+
+    .contact-icons{
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .contact-icons a{
+      display: inline-flex;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--link);
+      transition: all 0.2s;
+    }
+
+    .contact-icons a:hover{
+      background: var(--border);
+      text-decoration: none;
+    }
+
+    .contact-icons i{
+      font-size: 18px;
+    }
+
+    .cite-btn{
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--link);
+      padding: 2px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: var(--sans);
+      transition: all 0.2s;
+      margin-left: 8px;
+    }
+
+    .cite-btn:hover{
+      background: var(--border);
+    }
+
+    .cite-modal{
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cite-modal.active{
+      display: flex;
+    }
+
+    .cite-modal-content{
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .cite-modal h3{
+      margin: 0 0 16px 0;
+      font-family: var(--serif);
+      color: var(--text);
+    }
+
+    .cite-text{
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text);
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .cite-modal-buttons{
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .cite-modal-buttons button{
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: white;
+      color: var(--link);
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .cite-modal-buttons button:hover{
+      background: var(--border);
+    }
+
+    .cite-modal-buttons button.primary{
+      background: var(--link);
+      color: white;
+      border-color: var(--link);
+    }
+
+    .cite-modal-buttons button.primary:hover{
+      background: #1a3fa8;
+    }
+
+    .close-cite{
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--faint);
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+    }
+
+    .close-cite:hover{
+      color: var(--text);
     }
 
     footer{
@@ -194,7 +358,6 @@
 
     <nav class="nav">
       <a href="#about">About</a>
-      <a href="#preprints">Preprints</a>
       <a href="#publications">Publications</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -202,9 +365,13 @@
     <header class="hero">
       <div>
         <h1>Tal Burla</h1>
-        <div class="subtitle">PhD Student in Electrical & Computer Engineering</div>
+        <div class="subtitle">PhD Candidate</div>
         <div class="focus">
-          Research focus: optimization learning theory.
+          Department of Electrical & Computer Engineering<br>
+          Tel Aviv University
+        </div>
+        <div style="padding-top: 12px; font-size: 16px; color: var(--muted);">
+          Research focus: optimization and learning theory.
         </div>
       </div>
 
@@ -222,53 +389,48 @@
       </p>
 
       <p>
-        I obtained my B.Sc. in Mathematics and Computer Science from The Open University,
+        I obtained my B.Sc. in Mathematics and Computer Science from The Open University of Israel,
         and an M.Sc. in Computer Science from the Tel Aviv University,
-        where I worked under the supervision of Prof. Roi Livni.
+        where I worked under the supervision of <a href="https://www.rlivni.sites.tau.ac.il" target="_blank">Prof.Roi Livni</a>.
       </p>
     </section>
 
-    <section id="preprints">
-      <h2>Preprints</h2>
+    <section id="publications">
+      <h2>Publications</h2>
 
       <div class="papers">
         <div class="paper">
           <div class="paper-title">
-            All ERMs Can Fail in Stochastic Convex Optimization: Lower Bounds in Linear Dimension
-            <span class="tag">arXiv 2026</span>
+            <a href="https://arxiv.org/abs/2602.08350" target="_blank">
+              All ERMs Can Fail in Stochastic Convex Optimization: Lower Bounds in Linear Dimension
+            </a>
+            <span class="tag">Preprint (arXiv 2026)</span>
           </div>
           <div class="paper-meta">
-            Authors: <span class="me">Tal Burla</span>, Roi Livni
+            Authors: <span class="me">Tal Burla</span>, <a href="https://www.rlivni.sites.tau.ac.il" target="_blank">Roi Livni</a>
           </div>
           <div class="paper-links">
-            <a href="https://arxiv.org/abs/2602.08350" target="_blank">arXiv</a>
+            <a href="https://arxiv.org/pdf/2602.08350.pdf" target="_blank" class="link-btn">PDF</a>
+            <button class="cite-btn" onclick="openCiteModal('All ERMs Can Fail in Stochastic Convex Optimization: Lower Bounds in Linear Dimension', 'Tal Burla and Roi Livni', '2602.08350')">Cite</button>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="publications">
-      <h2>Publications</h2>
-      <div class="paper-meta">No publications yet.</div>
-    </section>
-
     <section id="contact">
       <h2>Contact</h2>
 
+      <div class="contact-icons">
+        <a href="https://www.linkedin.com/in/tal-burla-030105241" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://scholar.google.com/citations?user=0TXvDfIAAAAJ&hl=en&oi=ao" target="_blank" title="Google Scholar">
+          <i class="fas fa-graduation-cap"></i>
+        </a>
+      </div>
+
       <div class="contact-item">
         Email: <a href="mailto:talburla0810@gmail.com">talburla0810@gmail.com</a>
-      </div>
-
-      <div class="contact-item">
-        <a href="https://scholar.google.com/citations?user=0TXvDfIAAAAJ&hl=en&oi=ao" target="_blank">
-          Google Scholar
-        </a>
-      </div>
-
-      <div class="contact-item">
-        <a href="https://www.linkedin.com/in/tal-burla-030105241" target="_blank">
-          LinkedIn
-        </a>
       </div>
     </section>
 
@@ -278,8 +440,93 @@
 
   </main>
 
+  <div id="citeModal" class="cite-modal" onclick="closeCiteModal(event)">
+    <div class="cite-modal-content" onclick="event.stopPropagation()">
+      <button class="close-cite" onclick="closeCiteModal()">×</button>
+      <h3>Cite This Paper</h3>
+      <div class="cite-text" id="citeText"></div>
+      <div class="cite-modal-buttons">
+        <button onclick="copyToClipboard()">📋 Copy Citation</button>
+        <button class="primary" onclick="downloadBib()">⬇️ Download .bib</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    let currentCitation = {};
+
+    function makeBibKey(authors, year, title) {
+      // take first author's last name
+      let firstAuthor = authors.split(' and ')[0].trim();
+      let parts = firstAuthor.split(' ');
+      let last = parts[parts.length - 1].toLowerCase();
+      // sanitize title: remove non-alphanumeric and collapse spaces
+      let simpleTitle = title.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+      // limit length to avoid ridiculously long keys
+      if (simpleTitle.length > 30) simpleTitle = simpleTitle.slice(0, 30);
+      return `${last}${year}${simpleTitle}`;
+    }
+
+    function openCiteModal(title, authors, arxivId) {
+      const year = new Date().getFullYear();
+      currentCitation = {
+        title: title,
+        authors: authors,
+        arxivId: arxivId,
+        year: year
+      };
+      const key = makeBibKey(authors, year, title);
+      const bibtex = `@misc{${key},
+  title={${title}},
+  author={${authors}},
+  year={${year}},
+  eprint={${arxivId}},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/${arxivId}},
+}`;
+      document.getElementById('citeText').textContent = bibtex;
+      document.getElementById('citeModal').classList.add('active');
+    }
+
+    function closeCiteModal(event) {
+      if (event && event.target.id === 'citeModal') {
+        document.getElementById('citeModal').classList.remove('active');
+      } else if (!event) {
+        document.getElementById('citeModal').classList.remove('active');
+      }
+    }
+
+    function copyToClipboard() {
+      const text = document.getElementById('citeText').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = event.target;
+        const originalText = btn.textContent;
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    }
+
+    function downloadBib() {
+      const text = document.getElementById('citeText').textContent;
+      const element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', 'citation.bib');
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeCiteModal();
+      }
+    });
   </script>
 
 </body>
