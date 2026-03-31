@@ -389,9 +389,9 @@
       </p>
 
       <p>
-        III obtained my B.Sc. in Mathematics and Computer Science from The Open University of Israel,
+        I obtained my B.Sc. in Mathematics and Computer Science from The Open University of Israel,
         and an M.Sc. in Computer Science from the Tel Aviv University,
-        where I worked under the supervision of <a href="https://www.rlivni.sites.tau.ac.il" target="_blank">Prof.Roi Livni</a>.
+        where I worked under the supervision of <a class="roi-livni-link" target="_blank">Prof. Roi Livni</a>.
       </p>
     </section>
 
@@ -407,7 +407,7 @@
             <span class="tag">Preprint (arXiv 2026)</span>
           </div>
           <div class="paper-meta">
-            Authors: <span class="me">Tal Burla</span>, <a href="https://www.rlivni.sites.tau.ac.il" target="_blank">Roi Livni</a>
+            Authors: <span class="me">Tal Burla</span>, <a class="roi-livni-link" target="_blank">Roi Livni</a>
           </div>
           <div class="paper-links">
             <a href="https://arxiv.org/pdf/2602.08350.pdf" target="_blank" class="link-btn">PDF</a>
@@ -453,6 +453,9 @@
   </div>
 
   <script>
+    const ROI_LIVNI_URL = "https://www.rlivni.sites.tau.ac.il";
+    document.querySelectorAll(".roi-livni-link").forEach(a => a.href = ROI_LIVNI_URL);
+
     document.getElementById("year").textContent = new Date().getFullYear();
 
     let currentCitation = {};
